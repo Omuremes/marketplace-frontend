@@ -1,5 +1,34 @@
-# Vue 3 + TypeScript + Vite
+# Marketplace Frontend
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Фронтенд часть маркетплейса на базе Vue 3 (Composition API) и TypeScript.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+## Технологии
+- **Vue 3 + Vite**: Быстрая и производительная разработка.
+- **TypeScript**: Строгая типизация.
+- **Feature-Sliced Design (FSD)**: Архитектурная методология (частично реализована для слоев entities, features, shared).
+- **TailwindCSS**: Современная стилизация.
+- **Pinia**: Управление состоянием.
+
+## Особенности реализации
+- **Каталог товаров**: Динамический поиск по названию (регистронезависимый), пагинация и фильтрация.
+- **Карточка товара**: Детальная информация и список предложений от разных продавцов.
+- **Сортировка**: На странице товара доступна сортировка предложений по цене и дате доставки.
+- **Админ-модалки**: Удобный интерфейс для CRUD операций и загрузки фото.
+- **Прерывание загрузки**: Использование асинхронных состояний (`loading`, `saving`) для улучшения UX.
+
+## Документация AI
+Проект разработан с активным применением AI. Документация по процессу разработки находится в [docs/ai/](./docs/ai/AI_WORKFLOW.md).
+
+## Запуск локально
+1. Установите зависимости:
+   ```bash
+   npm install
+   ```
+2. Подготовьте `.env`:
+   ```bash
+   cp .env.example .env
+   ```
+3. Запустите dev-сервер:
+   ```bash
+   npm run dev
+   ```

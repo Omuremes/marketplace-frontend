@@ -23,11 +23,33 @@ export interface AdminPaginatedProducts {
   next_cursor?: string;
 }
 
+export interface AdminOfferResponse {
+  id: string;
+  product_id: string;
+  seller_id: string;
+  seller_name?: string;
+  price: Money;
+  delivery_date: string;
+}
+
+export interface AdminOfferPayload {
+  seller_id: string;
+  price: Money;
+  delivery_date: string;
+}
+
+export interface AdminSellerResponse {
+  id: string;
+  name: string;
+  rating: number;
+}
+
 export const adminProductApi = {
   async getList(limit = 50, cursor?: string | null, search?: string | null): Promise<AdminPaginatedProducts> {
     const params: Record<string, any> = { limit };
     if (cursor) params.cursor = cursor;
-    if (search) params.search = search;
+    const normalizedSearch = search?.trim();
+    if (normalizedSearch) params.search = normalizedSearch;
     const res = await apiClient.get<AdminPaginatedProducts>('/admin/products', { params });
     return res.data;
   },
@@ -57,6 +79,30 @@ export const adminProductApi = {
     const res = await apiClient.post(`/admin/products/${id}/image`, formData, {
       headers: { 'Content-Type': 'multipart/form-data' }
     });
+    return res.data;
+  },
+
+  async listOffers(productId: string): Promise<AdminOfferResponse[]> {
+    const res = await apiClient.get<AdminOfferResponse[]>(`/admin/products/${productId}/offers`);
+    return res.data;
+  },
+
+  async createOffer(productId: string, data: AdminOfferPayload): Promise<AdminOfferResponse> {
+    const res = await apiClient.post<AdminOfferResponse>(`/admin/products/${productId}/offers`, data);
+    return res.data;
+  },
+
+  async updateOffer(offerId: string, data: AdminOfferPayload): Promise<AdminOfferResponse> {
+    const res = await apiClient.put<AdminOfferResponse>(`/admin/offers/${offerId}`, data);
+    return res.data;
+  },
+
+  async deleteOffer(offerId: string): Promise<void> {
+    await apiClient.delete(`/admin/offers/${offerId}`);
+  },
+
+  async listSellers(): Promise<AdminSellerResponse[]> {
+    const res = await apiClient.get<AdminSellerResponse[]>('/admin/sellers');
     return res.data;
   }
 };

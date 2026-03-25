@@ -20,7 +20,11 @@
             </div>
             <div class="w-1/2">
               <label class="block text-sm font-medium mb-1">Валюта</label>
-              <input v-model="form.currency" type="text" class="w-full border rounded px-3 py-2 bg-gray-100 placeholder-gray-500" readonly />
+              <select v-model="form.currency" class="w-full border rounded px-3 py-2 bg-white">
+                <option v-for="currency in currencyOptions" :key="currency" :value="currency">
+                  {{ currency }}
+                </option>
+              </select>
             </div>
           </div>
           
@@ -75,6 +79,7 @@ const emit = defineEmits(['update:modelValue', 'saved'])
 
 const loading = ref(false)
 const errorMsg = ref('')
+const currencyOptions = ['RUB', 'USD', 'EUR', 'KZT', 'CNY']
 
 const isEdit = computed(() => !!props.product)
 

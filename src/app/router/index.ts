@@ -22,11 +22,6 @@ const router = createRouter({
           path: 'auth',
           name: 'seller-auth',
           component: () => import('@/pages/public/auth/index.vue')
-        },
-        {
-          path: 'profile',
-          name: 'seller-profile',
-          component: () => import('@/pages/public/profile/index.vue')
         }
       ]
     },

@@ -20,8 +20,8 @@ export const productApi = {
   /**
    * Получить детали товара (атрибуты + офферы)
    */
-  async getProductDetails(id: string): Promise<ProductDetails> {
-    const response = await apiClient.get<ProductDetails>(`/public/products/${id}`);
+  async getProductDetails(id: string, offers_sort: 'price' | 'delivery_date' = 'price'): Promise<ProductDetails> {
+    const response = await apiClient.get<ProductDetails>(`/public/products/${id}`, { params: { offers_sort } });
     return response.data;
   }
 };

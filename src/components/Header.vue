@@ -6,7 +6,6 @@
         <router-link to="/" class="mr-4 hover:underline">Товары</router-link>
         
         <template v-if="session.isAuth">
-          <router-link to="/profile" class="mr-4 text-sm font-bold">Личный кабинет</router-link>
           <button @click="handleLogout" class="text-sm border px-2 py-1 rounded hover:bg-white hover:text-blue-600 transition">Выход</button>
         </template>
         <template v-else>

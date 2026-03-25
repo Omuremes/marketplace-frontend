@@ -101,8 +101,8 @@ export const adminProductApi = {
     await apiClient.delete(`/admin/offers/${offerId}`);
   },
 
-  async listSellers(): Promise<AdminSellerResponse[]> {
-    const res = await apiClient.get<AdminSellerResponse[]>('/admin/sellers');
-    return res.data;
-  }
+  listSellers: async (): Promise<AdminSellerResponse[]> => {
+    const res = await apiClient.get<AdminSellerResponse[]>('/admin/sellers')
+    return res.data
+  },
 };
